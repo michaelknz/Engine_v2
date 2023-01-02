@@ -16,15 +16,12 @@ project "Engine"
 
 	vpaths {
     ["Headers"] = { "**.h", "**.hpp" },
-    ["Sources"] = {"**.c", "**.cpp"},
-	["Shaders"] = {"**.vert", "**.frag"},
+    ["Sources"] = {"**.c", "**.cpp"}
     }
 
 	files{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/src/**.vert",
-		"%{prj.name}/src/**.frag"}
+		"%{prj.name}/src/**.cpp"}
 
 	filter { "configurations:Debug" }
 		symbols "On"
@@ -52,14 +49,14 @@ project "Sandbox"
 	vpaths {
     ["Headers"] = { "**.h", "**.hpp" },
     ["Sources"] = {"**.c", "**.cpp"},
-	["Shaders"] = {"**.vs", "**.frag"},
+	["Shaders"] = {"**.vert", "**.frag"},
     }
 
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/src/**.vs",
-		"%{prj.name}/src/**.frag"}
+		"%{prj.name}/shaders/**.vert",
+		"%{prj.name}/shaders/**.frag"}
 
 	filter { "configurations:Debug" }
 		symbols "On"
