@@ -10,13 +10,14 @@ class Object {
 public:
 	Object();
 	virtual ~Object();
+	void Update();
 	template<typename T>
 	bool AddComponent(const std::string& name)
 	{
 		if (!std::is_base_of_v<Component, T>) {
 			return -1;
 		}
-		T* comp = new T(components&);
+		T* comp = new T(&components);
 		components.insert(std::make_pair(name, comp));
 		return 0;
 	}
