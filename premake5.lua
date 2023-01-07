@@ -44,7 +44,7 @@ project "Sandbox"
 	objdir ("%{wks.location}/bin-int/%{prj.name}/%{cfg.buildcfg}")
 	libdirs "%{wks.location}/bin/Engine/%{cfg.buildcfg}"
 	links {"Engine.lib"}
-	includedirs{"%{wks.location}/Engine/src", "%{wks.location}/Engine/include/glad", "%{wks.location}/Engine/include/glfw"}
+	includedirs{"%{wks.location}/Engine/src", "%{wks.location}/Engine/include/glad", "%{wks.location}/Engine/include/glfw", "%{wks.location}/%{prj.name}/src"}
 
 	vpaths {
     ["Headers"] = { "**.h", "**.hpp" },

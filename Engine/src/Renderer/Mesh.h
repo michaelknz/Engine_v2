@@ -10,7 +10,7 @@ public:
 	void Draw();
 private:
 	GLuint vao;
-	GLuint vbo;
+	std::vector<GLuint> vbos;
 	unsigned int vertex_col;
 	GLenum primitive;
 };

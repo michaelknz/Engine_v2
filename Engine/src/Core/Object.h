@@ -5,12 +5,14 @@
 #include <type_traits>
 
 class Component;
+class Scene;
 
 class Object {
 public:
-	Object();
+	Object(const std::string& name);
 	virtual ~Object();
 	void Update();
+	void AddToScene();
 	template<typename T>
 	bool AddComponent(const std::string& name)
 	{
@@ -28,4 +30,6 @@ public:
 	}
 private:
 	std::unordered_map<std::string, Component*> components;
+	Scene* scene;
+	std::string obj_name;
 };
