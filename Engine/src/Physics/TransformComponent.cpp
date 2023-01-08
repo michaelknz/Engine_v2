@@ -26,6 +26,21 @@ void TransformComponent::SetScale(const Vector3f& scale)
 	this->scale = scale;
 }
 
+Vector3f TransformComponent::GetPosition()
+{
+	return position;
+}
+
+Vector3f TransformComponent::GetRotation()
+{
+	return rotation;
+}
+
+Vector3f TransformComponent::GetScale()
+{
+	return scale;
+}
+
 void TransformComponent::Update()
 {
 

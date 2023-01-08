@@ -1,4 +1,6 @@
 #include "CameraComponent.h"
+#include "Physics/TransformComponent.h"
+#include "Math/MatrixOperations.h"
 
 CameraComponent::CameraComponent(std::unordered_map<std::string, Component*>* components)
 	:Component(components), width(0), height(0)
@@ -6,6 +8,9 @@ CameraComponent::CameraComponent(std::unordered_map<std::string, Component*>* co
 	fov = 90.0;
 	zNear = 0.1;
 	zFar = 100.0;
+	transform = GetComponent<TransformComponent>("transform");
+	transform->SetPosition(Vector3f(0.0f, 0.0f, -2.0f));
+	transform->SetRotation(Vector3f(0.0f, 0.0f, 0.0f));
 }
 
 CameraComponent::~CameraComponent()
@@ -46,6 +51,8 @@ Matrix4x4f CameraComponent::MakeP()
 Matrix4x4f CameraComponent::MakeV()
 {
 	Matrix4x4f view;
+	view = MatrixOperations::Translate(-1 * transform->GetPosition());
+	view = MatrixOperations::Rotation(-1 * transform->GetRotation()) * view;
 	return view;
 }
 

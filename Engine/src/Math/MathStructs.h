@@ -18,5 +18,7 @@ struct Matrix4x4f {
 	Matrix4x4f operator*(Matrix4x4f other);
 };
 
-Matrix4x4f operator*(double scale, const Matrix4x4f& mat);
-Matrix4x4f operator*(const Matrix4x4f& mat, double scale);
+Matrix4x4f operator*(float scale, const Matrix4x4f& mat);
+Matrix4x4f operator*(const Matrix4x4f& mat, float scale);
+Vector3f operator*(float scale, const Vector3f& vec);
+Vector3f operator*(const Vector3f& vec, float scale);

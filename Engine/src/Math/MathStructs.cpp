@@ -17,7 +17,7 @@ Vector3f Vector3f::operator+(Vector3f other)
 	return Vector3f(x + other.x, y + other.y, z + other.z);
 }
 
-Matrix4x4f operator*(double scale, const Matrix4x4f& mat)
+Matrix4x4f operator*(float scale, const Matrix4x4f& mat)
 {
 	Matrix4x4f output;
 	for (int i = 0; i < 4; ++i) {
@@ -28,9 +28,19 @@ Matrix4x4f operator*(double scale, const Matrix4x4f& mat)
 	return output;
 }
 
-Matrix4x4f operator*(const Matrix4x4f& mat, double scale)
+Matrix4x4f operator*(const Matrix4x4f& mat, float scale)
 {
 	return scale * mat;
+}
+
+Vector3f operator*(float scale, const Vector3f& vec)
+{
+	return Vector3f(scale * vec.x, scale * vec.y, scale * vec.z);
+}
+
+Vector3f operator*(const Vector3f& vec, float scale)
+{
+	return scale * vec;
 }
 
 Matrix4x4f::Matrix4x4f()

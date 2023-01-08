@@ -2,6 +2,8 @@
 #include "Component.h"
 #include "Math/MathStructs.h"
 
+class TransformComponent;
+
 class CameraComponent :public Component {
 public:
 	CameraComponent(std::unordered_map<std::string, Component*>* components);
@@ -19,4 +21,5 @@ private:
 	float zFar;
 	float zNear;
 	Matrix4x4f VP;
+	TransformComponent* transform;
 };
