@@ -11,17 +11,17 @@ TransformComponent::~TransformComponent()
 
 }
 
-void TransformComponent::SetPosition(const Vector3d& pos)
+void TransformComponent::SetPosition(const Vector3f& pos)
 {
 	position = pos;
 }
 
-void TransformComponent::SetRotation(const Vector3d& rot)
+void TransformComponent::SetRotation(const Vector3f& rot)
 {
 	rotation = rot;
 }
 
-void TransformComponent::SetScale(const Vector3d& scale)
+void TransformComponent::SetScale(const Vector3f& scale)
 {
 	this->scale = scale;
 }

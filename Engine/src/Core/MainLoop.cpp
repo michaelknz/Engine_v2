@@ -5,6 +5,7 @@ MainLoop::MainLoop(int width, int height, const std::string& title)
 	:window(width, height, title)
 {
 	scene = Scene::getInstance();
+	scene->SetCamera(height, width);
 }
 
 MainLoop::~MainLoop()

@@ -13,4 +13,6 @@ public:
 	bool is_window_ok();
 private:
 	GLFWwindow* window;
+	int width;
+	int height;
 };

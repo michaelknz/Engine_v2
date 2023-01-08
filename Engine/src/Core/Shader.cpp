@@ -17,6 +17,16 @@ void Shader::Compile() {
 	MakeProg(shader_name);
 	AttachShaders(shaders.capacity());
 	glLinkProgram(prog);
+
+	GLint loglen;
+	glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &loglen);
+	if (loglen > 0) {
+		char* log = new char[loglen];
+		GLsizei writen;
+		glGetProgramInfoLog(prog, loglen, &writen, log);
+		printf("%s\n", log);
+		delete[] log;
+	}
 }
 
 void Shader::Bind() {
@@ -71,4 +81,9 @@ void Shader::DetachShaders() {
 
 void Shader::MakeShader(const std::string& file_name, GLuint type) {
 	CompileShader(ReadShader(file_name), type);
+}
+
+void Shader::SendMatrix4x4f(Matrix4x4f mat, const std::string& un_name)
+{
+	glUniformMatrix4fv(glGetUniformLocation(prog, un_name.c_str()), 1, GL_TRUE, mat.mas.data());
 }

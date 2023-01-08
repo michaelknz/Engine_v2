@@ -13,7 +13,7 @@ Mesh::~Mesh()
 	glDeleteVertexArrays(1, &vao);
 }
 
-void Mesh::SetVertexContent(const std::vector<double>& vertices, unsigned int index)
+void Mesh::SetVertexContent(const std::vector<float>& vertices, unsigned int index)
 {
 	GLuint new_vbo;
 	glGenBuffers(1, &new_vbo);
@@ -21,9 +21,9 @@ void Mesh::SetVertexContent(const std::vector<double>& vertices, unsigned int in
 	glBindVertexArray(vao);
 	glBindBuffer(GL_ARRAY_BUFFER, new_vbo);
 
-	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(double), &vertices[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), &vertices[0], GL_STATIC_DRAW);
 
-	glVertexAttribPointer(index, vertices.size() / vertex_col, GL_DOUBLE, GL_FALSE, (vertices.size() / vertex_col) * sizeof(double), (GLvoid*)(0));
+	glVertexAttribPointer(index, vertices.size() / vertex_col, GL_FLOAT, GL_FALSE, (vertices.size() / vertex_col) * sizeof(float), (GLvoid*)(0));
 	glEnableVertexAttribArray(index);
 
 	glBindVertexArray(0);

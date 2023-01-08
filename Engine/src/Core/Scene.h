@@ -12,6 +12,8 @@ public:
 	static Scene* getInstance();
 	static void delInstance();
 	void AddObject(Object* obj, std::string name);
+	void SetCamera(int height, int width);
+	Object* GetCamera();
 private:
 	std::unordered_map<std::string, Object*> objects;
 	static Scene* instance;

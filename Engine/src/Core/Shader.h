@@ -2,6 +2,7 @@
 #include <Glad/glad.h>
 #include <string>
 #include <vector>
+#include "Math/MathStructs.h"
 
 class Shader {
 public:
@@ -10,6 +11,7 @@ public:
 	void Bind();
 	void Unbind();
 	void Compile();
+	void SendMatrix4x4f(Matrix4x4f mat, const std::string& un_name);
 protected:
 	void MakeShader(const std::string& file_name, GLuint type);
 private:

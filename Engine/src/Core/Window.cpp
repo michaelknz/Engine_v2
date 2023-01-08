@@ -2,6 +2,9 @@
 
 Window::Window(int width, int height, const std::string& title)
 {
+	this->width = width;
+	this->height = height;
+
 	glfwInit();
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);

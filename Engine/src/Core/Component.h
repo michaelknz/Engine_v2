@@ -9,7 +9,7 @@ public:
 	virtual void Update() = 0;
 protected:
 	template<typename T>
-	T GetComponent(const std::string& name)
+	T* GetComponent(const std::string& name)
 	{
 		return static_cast<T*>(components->at(name));
 	}

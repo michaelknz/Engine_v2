@@ -1,5 +1,5 @@
 #include "Object.h"
-#include "TransformComponent.h"
+#include "Physics/TransformComponent.h"
 #include "Scene.h"
 
 Object::Object(const std::string& name)

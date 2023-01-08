@@ -26,7 +26,7 @@ public:
 	template<typename T>
 	T* GetComponent(const std::string& name)
 	{
-		return static_cast<T*>(components->at(name));
+		return static_cast<T*>(components.at(name));
 	}
 private:
 	std::unordered_map<std::string, Component*> components;
