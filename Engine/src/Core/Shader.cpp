@@ -87,3 +87,8 @@ void Shader::SendMatrix4x4f(Matrix4x4f mat, const std::string& un_name)
 {
 	glUniformMatrix4fv(glGetUniformLocation(prog, un_name.c_str()), 1, GL_TRUE, mat.mas.data());
 }
+
+void Shader::Send1i(int val, const std::string& un_name)
+{
+	glUniform1i(glGetUniformLocation(prog, un_name.c_str()), val);
+}

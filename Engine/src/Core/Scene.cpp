@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Object.h"
 #include "CameraComponent.h"
+#include "Physics/TransformComponent.h"
 
 Scene* Scene::instance = nullptr;
 
@@ -22,6 +23,7 @@ Scene* Scene::getInstance()
 		Object* camera = new Object("camera");
 		camera->AddComponent<CameraComponent>("camera");
 		instance->AddObject(camera, "camera");
+		camera->GetComponent<TransformComponent>("transform")->SetPosition(Vector3f(0.0f, 0.0f, -1.0f));
 	}
 
 	return instance;

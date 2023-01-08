@@ -12,6 +12,7 @@ public:
 	void Unbind();
 	void Compile();
 	void SendMatrix4x4f(Matrix4x4f mat, const std::string& un_name);
+	void Send1i(int val, const std::string& un_name);
 protected:
 	void MakeShader(const std::string& file_name, GLuint type);
 private:

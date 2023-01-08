@@ -12,6 +12,7 @@ public:
 	Vector3f GetPosition();
 	Vector3f GetRotation();
 	Vector3f GetScale();
+	Matrix4x4f GetM();
 	virtual void Update() override;
 private:
 	Vector3f position;

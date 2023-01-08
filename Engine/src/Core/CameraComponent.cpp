@@ -9,8 +9,6 @@ CameraComponent::CameraComponent(std::unordered_map<std::string, Component*>* co
 	zNear = 0.1;
 	zFar = 100.0;
 	transform = GetComponent<TransformComponent>("transform");
-	transform->SetPosition(Vector3f(0.0f, 0.0f, -2.0f));
-	transform->SetRotation(Vector3f(0.0f, 0.0f, 0.0f));
 }
 
 CameraComponent::~CameraComponent()
@@ -44,6 +42,7 @@ Matrix4x4f CameraComponent::MakeP()
 	perspective.mas[10] = (zFar + zNear) / (zFar - zNear);
 	perspective.mas[11] = (-2 * zFar * zNear) / (zFar - zNear);
 	perspective.mas[14] = 1.0f;
+	perspective.mas[15] = 0.0f;
 
 	return perspective;
 }

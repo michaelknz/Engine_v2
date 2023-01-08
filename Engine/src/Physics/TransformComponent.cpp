@@ -1,7 +1,8 @@
 #include "TransformComponent.h"
+#include "Math/MatrixOperations.h"
 
 TransformComponent::TransformComponent(std::unordered_map<std::string, Component*>* components)
-	:Component(components), position(), rotation(), scale()
+	:Component(components), position(), rotation(), scale(1.0f, 1.0f, 1.0f)
 {
 
 }
@@ -39,6 +40,11 @@ Vector3f TransformComponent::GetRotation()
 Vector3f TransformComponent::GetScale()
 {
 	return scale;
+}
+
+Matrix4x4f TransformComponent::GetM()
+{
+	return MatrixOperations::Translate(position) * MatrixOperations::Rotation(rotation) * MatrixOperations::Scale(scale);
 }
 
 void TransformComponent::Update()
