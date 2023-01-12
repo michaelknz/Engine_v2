@@ -26,6 +26,9 @@ public:
 	template<typename T>
 	T* GetComponent(const std::string& name)
 	{
+		if (components.find(name) == components.end()) {
+			return nullptr;
+		}
 		return static_cast<T*>(components.at(name));
 	}
 private:

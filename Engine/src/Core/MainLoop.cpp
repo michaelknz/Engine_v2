@@ -22,3 +22,8 @@ void MainLoop::Loop()
 		window.GetEvents();
 	}
 }
+
+void MainLoop::Start()
+{
+	scene->Start();
+}

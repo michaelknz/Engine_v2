@@ -1,9 +1,15 @@
 #include "ClientLayer.h"
-#include "Custom/Quad.h"
+#include "Renderer/SpriteComponent.h"
+#include "Core/Object.h"
+#include "Scripts/ScriptComponent.h"
+#include "Custom/QuadScript.h"
 
 ClientLayer::ClientLayer()
 {
-	Quad* quad = new Quad;
+	Object* quad = new Object("Quad");
+	quad->AddComponent<SpriteComponent>("sprite");
+	quad->AddComponent<ScriptComponent>("script");
+	quad->GetComponent<ScriptComponent>("script")->SetScript<QuadScript>();
 	quad->AddToScene();
 }
 

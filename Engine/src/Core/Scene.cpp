@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "CameraComponent.h"
 #include "Physics/TransformComponent.h"
+#include "Scripts/ScriptComponent.h"
 
 Scene* Scene::instance = nullptr;
 
@@ -62,4 +63,14 @@ void Scene::SetCamera(int height, int width)
 Object* Scene::GetCamera()
 {
 	return objects["camera"];
+}
+
+void Scene::Start()
+{
+	for (auto i = objects.begin(); i != objects.end(); ++i) {
+		ScriptComponent* script = (*i).second->GetComponent<ScriptComponent>("script");
+		if (script != nullptr) {
+			script->Start();
+		}
+	}
 }

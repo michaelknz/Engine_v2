@@ -8,6 +8,7 @@ public:
 	MainLoop(int width, int height, const std::string& title);
 	~MainLoop();
 	void Loop();
+	void Start();
 private:
 	Window window;
 	Scene* scene;

@@ -9,6 +9,7 @@ public:
 	Scene();
 	~Scene();
 	void Update();
+	void Start();
 	static Scene* getInstance();
 	static void delInstance();
 	void AddObject(Object* obj, std::string name);
