@@ -5,6 +5,7 @@
 CameraComponent::CameraComponent(std::unordered_map<std::string, Component*>* components)
 	:Component(components), width(0), height(0)
 {
+	comp_name = "camera";
 	fov = 90.0;
 	zNear = 0.1;
 	zFar = 100.0;

@@ -3,6 +3,7 @@
 ScriptComponent::ScriptComponent(std::unordered_map<std::string, Component*>* components)
 	:Component(components)
 {
+	comp_name = "script";
 	script = nullptr;
 }
 

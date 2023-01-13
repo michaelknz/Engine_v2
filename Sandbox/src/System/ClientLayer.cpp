@@ -7,8 +7,8 @@
 ClientLayer::ClientLayer()
 {
 	Object* quad = new Object("Quad");
-	quad->AddComponent<SpriteComponent>("sprite");
-	quad->AddComponent<ScriptComponent>("script");
+	quad->AddComponent<SpriteComponent>();
+	quad->AddComponent<ScriptComponent>();
 	quad->GetComponent<ScriptComponent>("script")->SetScript<QuadScript>();
 	quad->AddToScene();
 }

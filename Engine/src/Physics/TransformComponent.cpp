@@ -4,7 +4,7 @@
 TransformComponent::TransformComponent(std::unordered_map<std::string, Component*>* components)
 	:Component(components), position(), rotation(), scale(1.0f, 1.0f, 1.0f)
 {
-
+	comp_name = "transform";
 }
 
 TransformComponent::~TransformComponent()
