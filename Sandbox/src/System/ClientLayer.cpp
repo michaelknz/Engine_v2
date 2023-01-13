@@ -9,7 +9,7 @@ ClientLayer::ClientLayer()
 	Object* quad = new Object("Quad");
 	quad->AddComponent<SpriteComponent>();
 	quad->AddComponent<ScriptComponent>();
-	quad->GetComponent<ScriptComponent>("script")->SetScript<QuadScript>();
+	quad->GetComponent<ScriptComponent>()[0]->SetScript<QuadScript>();
 	quad->AddToScene();
 }
 
