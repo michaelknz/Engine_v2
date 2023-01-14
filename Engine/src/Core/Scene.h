@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include <string>
+#include <queue>
 
 class Object;
 
@@ -12,10 +13,15 @@ public:
 	void Start();
 	static Scene* getInstance();
 	static void delInstance();
-	void AddObject(Object* obj, std::string name);
+	int AddObject(Object* obj);
+	int DelObject(Object* obj);
+	void Instantiate();
+	void Delete();
 	void SetCamera(int height, int width);
 	Object* GetCamera();
 private:
 	std::unordered_map<std::string, Object*> objects;
 	static Scene* instance;
+	std::queue<Object*> instant_objects;
+	std::queue<Object*> delete_objects;
 };

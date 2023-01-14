@@ -23,7 +23,7 @@ Scene* Scene::getInstance()
 
 		Object* camera = new Object("camera");
 		camera->AddComponent<CameraComponent>("camera");
-		instance->AddObject(camera, "camera");
+		instance->objects[camera->GetName()] = camera;
 		camera->GetComponent<TransformComponent>("transform")->SetPosition(Vector3f(0.0f, 0.0f, -1.0f));
 	}
 
@@ -43,16 +43,31 @@ void Scene::delInstance()
 	}
 }
 
-void Scene::AddObject(Object* obj, std::string name)
+int Scene::AddObject(Object* obj)
 {
-	objects[name] = obj;
+	if (objects.find(obj->GetName()) != objects.end()) {
+		return -1;
+	}
+	instant_objects.push(obj);
+	return 0;
+}
+
+int Scene::DelObject(Object* obj)
+{
+	if (objects.find(obj->GetName()) == objects.end()) {
+		return -1;
+	}
+	delete_objects.push(obj);
+	return 0;
 }
 
 void Scene::Update()
 {
+	Instantiate();
 	for (auto i = objects.begin(); i != objects.end(); ++i) {
 		(*i).second->Update();
 	}
+	Delete();
 }
 
 void Scene::SetCamera(int height, int width)
@@ -68,9 +83,24 @@ Object* Scene::GetCamera()
 void Scene::Start()
 {
 	for (auto i = objects.begin(); i != objects.end(); ++i) {
-		ScriptComponent* script = (*i).second->GetComponent<ScriptComponent>("script");
-		if (script != nullptr) {
-			script->Start();
-		}
+		(*i).second->Start();
+	}
+}
+
+void Scene::Instantiate()
+{
+	while(instant_objects.size() > 0) {
+		objects[instant_objects.front()->GetName()] = instant_objects.front();
+		instant_objects.front()->Start();
+		instant_objects.pop();
+	}
+}
+
+void Scene::Delete()
+{
+	while (delete_objects.size() > 0) {
+		objects.erase(delete_objects.front()->GetName());
+		delete delete_objects.front();
+		delete_objects.pop();
 	}
 }

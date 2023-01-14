@@ -1,8 +1,9 @@
 #include "Component.h"
+#include "Object.h"
 
-Component::Component(std::unordered_map<std::string, Component*>* components)
+Component::Component(Object* obj)
+	:object(obj)
 {
-	this->components = components;
 	comp_name = "default";
 }
 
@@ -14,4 +15,9 @@ Component::~Component()
 std::string Component::GetCompName()
 {
 	return comp_name;
+}
+
+void Component::Start()
+{
+
 }

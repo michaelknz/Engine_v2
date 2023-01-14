@@ -1,8 +1,8 @@
 #include "TransformComponent.h"
 #include "Math/MatrixOperations.h"
 
-TransformComponent::TransformComponent(std::unordered_map<std::string, Component*>* components)
-	:Component(components), position(), rotation(), scale(1.0f, 1.0f, 1.0f)
+TransformComponent::TransformComponent(Object* obj)
+	:Component(obj), position(), rotation(), scale(1.0f, 1.0f, 1.0f)
 {
 	comp_name = "transform";
 }
@@ -10,6 +10,14 @@ TransformComponent::TransformComponent(std::unordered_map<std::string, Component
 TransformComponent::~TransformComponent()
 {
 
+}
+
+Component* TransformComponent::Copy(Object* obj)
+{
+	TransformComponent* output = new TransformComponent(object);
+	*output = *this;
+	output->object = obj;
+	return output;
 }
 
 void TransformComponent::SetPosition(const Vector3f& pos)

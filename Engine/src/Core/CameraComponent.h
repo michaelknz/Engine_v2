@@ -3,14 +3,16 @@
 #include "Math/MathStructs.h"
 
 class TransformComponent;
+class Object;
 
 class CameraComponent :public Component {
 public:
-	CameraComponent(std::unordered_map<std::string, Component*>* components);
+	CameraComponent(Object* obj);
 	~CameraComponent();
 	void SetSize(int width, int height);
 	Matrix4x4f GetVP();
 	void Update() override;
+	Component* Copy(Object* obj) override;
 private:
 	void SetVP();
 	Matrix4x4f MakeP();

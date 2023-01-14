@@ -13,12 +13,17 @@ class Scene;
 class Object {
 public:
 	Object(const std::string& name);
+	Object();
 	virtual ~Object();
+	Object* Copy();
 	void Update();
+	void Start();
 	void AddToScene();
+	void AddToPrefab();
+	std::string GetName();
 
 	template<typename T>
-	bool AddComponent(const std::string& name)
+	int AddComponent(const std::string& name)
 	{
 		if (!std::is_base_of_v<Component, T>) {
 			return -1;
@@ -26,18 +31,18 @@ public:
 		if (components.find(name) != components.end()) {
 			return -1;
 		}
-		T* comp = new T(&components);
+		T* comp = new T(this);
 		components.insert(std::make_pair(name, comp));
 		return 0;
 	}
 
 	template<typename T>
-	bool AddComponent()
+	int AddComponent()
 	{
 		if (!std::is_base_of_v<Component, T>) {
 			return -1;
 		}
-		T* comp = new T(&components);
+		T* comp = new T(this);
 		if (components.find(comp->GetCompName()) == components.end()) {
 			components.insert(std::make_pair(comp->GetCompName(), comp));
 			return 0;

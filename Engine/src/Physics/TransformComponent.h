@@ -2,10 +2,13 @@
 #include "Core/Component.h"
 #include "Math/MathStructs.h"
 
+class Object;
+
 class TransformComponent : public Component {
 public:
-	TransformComponent(std::unordered_map<std::string, Component*>* components);
+	TransformComponent(Object* obj);
 	~TransformComponent() override;
+	Component* Copy(Object* obj) override;
 	void SetPosition(const Vector3f& pos);
 	void SetRotation(const Vector3f& rot);
 	void SetScale(const Vector3f& scale);

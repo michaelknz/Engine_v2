@@ -4,8 +4,8 @@
 #include "Core/Scene.h"
 #include "Core/Object.h"
 
-SpriteComponent::SpriteComponent(std::unordered_map<std::string, Component*>* components)
-	:Component(components), mesh(GL_TRIANGLES, 6), shader()
+SpriteComponent::SpriteComponent(Object* obj)
+	:Component(obj), mesh(GL_TRIANGLES, 6), shader()
 {
 	comp_name = "sprite";
 	texture.SetTexture("res/checkerboard.png", GL_NEAREST);
@@ -54,4 +54,14 @@ void SpriteComponent::Update()
 
 	texture.Unbind();
 	shader.Unbind();
+}
+
+Component* SpriteComponent::Copy(Object* obj)
+{
+	SpriteComponent* output = new SpriteComponent(object);
+	output->comp_name = comp_name;
+	output->texture.SetTexture(texture.GetTexName(), texture.GetInt());
+	output->object = obj;
+	output->transform = output->GetComponent<TransformComponent>("transform");
+	return output;
 }

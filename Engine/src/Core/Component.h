@@ -1,35 +1,28 @@
 #pragma once
 #include <unordered_map>
 #include <string>
+#include "Object.h"
 
 class Component {
 public:
-	Component(std::unordered_map<std::string, Component*>* components);
+	Component(Object* obj);
 	virtual ~Component();
 	virtual void Update() = 0;
+	virtual void Start();
 	std::string GetCompName();
+	virtual Component* Copy(Object* obj) = 0;
 protected:
 	template<typename T>
 	T* GetComponent(const std::string& name)
 	{
-		if (components->find(name) == components->end()) {
-			return nullptr;
-		}
-		return static_cast<T*>(components->at(name));
+		return object->GetComponent<T>(name);
 	}
 	
 	template<typename T>
 	std::vector<T*> GetComponent()
 	{
-		std::vector<T*> output;
-		for (auto i = components->begin(); i != components->end(); ++i) {
-			if (typeid(*((*i).second)) == typeid(T)) {
-				output.push_back((*i).second);
-			}
-		}
-		return output;
+		return object->GetComponent<T>();
 	}
 	std::string comp_name;
-private:
-	std::unordered_map<std::string, Component*>* components;
+	Object* object;
 };

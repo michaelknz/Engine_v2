@@ -10,6 +10,9 @@ Mesh::Mesh(GLenum prim, unsigned int vert_col)
 Mesh::~Mesh()
 {
 	glDeleteBuffers(vbos.size(), &vbos[0]);
+	for (int i = 0; i < vbos.size(); ++i) {
+		glDeleteBuffers(1, &vbos[i]);
+	}
 	glDeleteVertexArrays(1, &vao);
 }
 

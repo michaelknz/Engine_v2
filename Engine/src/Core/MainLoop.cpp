@@ -1,5 +1,6 @@
 #include "MainLoop.h"
 #include "Scene.h"
+#include "Prefab.h"
 
 MainLoop::MainLoop(int width, int height, const std::string& title)
 	:window(width, height, title)
@@ -11,6 +12,7 @@ MainLoop::MainLoop(int width, int height, const std::string& title)
 MainLoop::~MainLoop()
 {
 	Scene::delInstance();
+	Prefab::delInstance();
 }
 
 void MainLoop::Loop()

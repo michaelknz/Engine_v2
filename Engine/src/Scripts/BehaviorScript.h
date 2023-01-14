@@ -4,16 +4,18 @@
 
 class ScriptComponent;
 class TransformComponent;
+class Object;
 
 class BehaviorScript {
 public:
 	BehaviorScript();
 	virtual ~BehaviorScript();
-	void SetOwner(ScriptComponent* owner);
 	virtual void Start();
 	virtual void Update();
+	void SetOwner(ScriptComponent* owner);
 protected:
 	TransformComponent* transform;
-private:
-	ScriptComponent* owner;
+	void DestroyObject(Object* obj);
+	Object* Instantiate(Object* obj);
+	Object* parent_object;
 };

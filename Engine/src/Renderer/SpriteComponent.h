@@ -6,13 +6,15 @@
 
 class CameraComponent;
 class TransformComponent;
+class Object;
 
 class SpriteComponent: public Component {
 public:
-	SpriteComponent(std::unordered_map<std::string, Component*>* components);
+	SpriteComponent(Object* obj);
 	~SpriteComponent() override;
 	virtual void Update() override;
 	void SetTexture(const std::string& texture_name, GLint inter_param);
+	Component* Copy(Object* obj) override;
 private:
 	Shader2D shader;
 	Mesh mesh;

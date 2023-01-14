@@ -1,18 +1,28 @@
 #include "Texture.h"
-#include <SOIL.h>
+#include <SOIL2.h>
 
 Texture::Texture()
 {
-	glGenTextures(1, &texture);
+	texture = 0;
 }
 
 Texture::~Texture()
 {
-	glDeleteTextures(1, &texture);
+	if (texture != 0) {
+		glDeleteTextures(1, &texture);
+		texture = 0;
+	}
 }
 
 void Texture::SetTexture(const std::string& texture_name, GLint interpolate_param)
 {
+	tex_name = texture_name;
+	int_param = interpolate_param;
+	if (texture != 0) {
+		glDeleteTextures(1, &texture);
+		texture = 0;
+	}
+	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, interpolate_param);
@@ -37,4 +47,14 @@ void Texture::Unbind()
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+GLint Texture::GetInt()
+{
+	return int_param;
+}
+
+std::string Texture::GetTexName()
+{
+	return tex_name;
 }

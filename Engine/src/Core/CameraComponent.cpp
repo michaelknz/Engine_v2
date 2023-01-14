@@ -2,8 +2,8 @@
 #include "Physics/TransformComponent.h"
 #include "Math/MatrixOperations.h"
 
-CameraComponent::CameraComponent(std::unordered_map<std::string, Component*>* components)
-	:Component(components), width(0), height(0)
+CameraComponent::CameraComponent(Object* obj)
+	:Component(obj), width(0), height(0)
 {
 	comp_name = "camera";
 	fov = 90.0;
@@ -22,6 +22,14 @@ void CameraComponent::SetSize(int width, int height)
 	this->width = width;
 	this->height = height;
 	SetVP();
+}
+
+Component* CameraComponent::Copy(Object* obj)
+{
+	CameraComponent* output = new CameraComponent(object);
+	*output = *this;
+	output->object = obj;
+	return output;
 }
 
 void CameraComponent::SetVP()
