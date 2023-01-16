@@ -10,9 +10,9 @@ project "Engine"
 	architecture "x64"
 	targetdir "%{wks.location}/bin/%{prj.name}/%{cfg.buildcfg}"
 	objdir ("%{wks.location}/bin-int/%{prj.name}/%{cfg.buildcfg}")
-	libdirs {"%{wks.location}/%{prj.name}/lib/glad/%{cfg.buildcfg}", "%{wks.location}/%{prj.name}/lib/glfw/%{cfg.buildcfg}", "%{wks.location}/%{prj.name}/lib/soil/%{cfg.buildcfg}"}
-	links{"Glad.lib", "glfw3.lib", "soil2.lib"}
-	includedirs {"%{wks.location}/%{prj.name}/include/glad", "%{wks.location}/%{prj.name}/include/glfw", "%{wks.location}/Engine/include/soil", "%{wks.location}/%{prj.name}/src"}
+	libdirs {"%{wks.location}/%{prj.name}/lib/glad/%{cfg.buildcfg}", "%{wks.location}/%{prj.name}/lib/glfw/%{cfg.buildcfg}", "%{wks.location}/%{prj.name}/lib/soil/%{cfg.buildcfg}", "%{wks.location}/%{prj.name}/lib/lua/%{cfg.buildcfg}"}
+	links{"Glad.lib", "glfw3.lib", "soil2.lib", "lua54.lib"}
+	includedirs {"%{wks.location}/%{prj.name}/include/glad", "%{wks.location}/%{prj.name}/include/glfw", "%{wks.location}/Engine/include/soil", "%{wks.location}/Engine/include/lua", "%{wks.location}/%{prj.name}/src"}
 
 	vpaths {
     ["Headers"] = { "**.h", "**.hpp" },

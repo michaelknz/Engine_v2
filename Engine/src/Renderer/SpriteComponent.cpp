@@ -8,7 +8,7 @@ SpriteComponent::SpriteComponent(Object* obj)
 	:Component(obj), mesh(GL_TRIANGLES, 6), shader()
 {
 	comp_name = "sprite";
-	texture.SetTexture("res/checkerboard.png", GL_NEAREST);
+	texture.SetTexture("res/textures/checkerboard.png", GL_NEAREST);
 	shader.Compile();
 	std::vector<float> position = {
 		-0.5, -0.5, 0,
